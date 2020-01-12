@@ -3,23 +3,24 @@
   <div class="container row" >
 
 <div class="col-md-4">
-
-
+First Value={{first}}<br>
+Sec Value={{sec}}<br>
+operator Value={{oper}}<br>
+Total Value={{total}}<br>
+secArray={{secArray}}
 
 </div>
 <div class="col-md-4">
       <div class="row">
-
-        <textarea disabled style="font-size:30px; color:red" class="bg-light" v-if="(sec=='' && total== 0)" name="name" v-model="first" rows="2" cols="20" ></textarea>
-          <textarea disabled style="font-size:30px; color:red" class="bg-light" v-if="(first!='' && sec!= '' && total== 0)" name="name" v-model="sec" rows="2" cols="20" ></textarea>
-                 <textarea disabled style="font-size:30px; color:red" class="bg-light" v-if="(total!=0)"  name="name" v-model="total" rows="2" cols="20"></textarea>
+{{display}}
+                 <textarea disabled style="font-size:30px; color:red" class="bg-light"  name="name" v-model="name" rows="2" cols="20"></textarea>
       </div>
   <div class="row">
 <button type="button" @click="setFirst" class="btn-lg" value="1">1</button>
 <button type="button"  @click="setFirst" class="btn-lg" value="2">2</button>
 <button type="button"  @click="setFirst" class="btn-lg" value="3">3</button>
 
-<button type="button"  @click="sub" class="btn-lg" value="sub">-</button>
+<button type="button"  @click="sub" class="btn-lg" value="-">-</button>
 
     </div>
 
@@ -28,7 +29,7 @@
 <button type="button"  @click="setFirst" class="btn-lg" value="5">5</button>
 <button type="button"  @click="setFirst" class="btn-lg" value="6">6</button>
 
-<button type="button"  @click="sub" class="btn-lg" value="add" >+</button>
+<button type="button"  @click="sub" class="btn-lg" value="+" >+</button>
 
     </div>
 
@@ -36,12 +37,12 @@
         <button type="button"  @click="setFirst" class="btn-lg" value="7">7</button>
 <button type="button"  @click="setFirst" class="btn-lg" value="8">8</button>
 <button type="button"  @click="setFirst" class="btn-lg" value="9">9</button>
-<button type="button" @click="sub" class="btn-lg" value="devide">/</button>
+<button type="button" @click="sub" class="btn-lg" value="/">/</button>
 
     </div>
     <div class="row">
       <button type="button"  @click="setFirst" class="btn-lg" value="0">0</button>
-<button type="button" @click="sub" class="btn-lg" value="multi">*</button>
+<button type="button" @click="sub" class="btn-lg" value="*">*</button>
 <button type="button"  @click="clear" class="btn-lg" value="clear">C</button>
  <button type="button"  @click="equal"  class="btn-lg">=</button>
     </div>
@@ -65,6 +66,24 @@
 
 <script>
 export default {
+
+  computed:{
+    name:function(){
+      if(this.sec=='' && this.total== 0)
+      return this.first+this.oper+this.sec;
+      if(this.first!='' && this.sec!= '' && this.total== 0)
+        return this.first+this.oper+this.sec;
+      if(this.total!=0 && this.sec==0)
+       return this.total; 
+     if(this.total!=0 && this.oper!='')
+    return this.total+this.oper+this.sec;
+
+      
+
+     
+    }
+  },
+
 data() {
   return {
     firstArray:[],
@@ -73,10 +92,13 @@ data() {
     first:'',
     total:0,
     flag:0,
+   
 
 
     total:'',
-    oper:''
+    oper:'',
+     display:'',
+    
   }
 },
 methods: {
@@ -88,11 +110,15 @@ methods: {
     this.secArray=[];
       this.first='';
         this.sec='';
+        this.oper='';
+        this.flag=0;
 
   }
   },
 
 setFirst:function(e){
+
+  
 if(this.flag==0 )
 {
 
@@ -112,14 +138,27 @@ if(this.flag==0 )
 }
 
 
+
 if(this.flag==1)
 {
 
+
+    if(this.oper=='' && this.first=='' && this.total!=0)
+{
+  alert("please Select operator For Operation")
+  return false
+}
     if(this.total!=0 || this.total!='' )
     {
-      this.first=this.total;
-      this.secArray=[];
+
+
+          if(this.secArray.length==0)
+             this.secArray=[];
+        this.first=this.total;
+     
+      
     }
+
 this.secArray.push(e.target.value);
 
   this.sec=this.secArray.join();
@@ -131,7 +170,7 @@ this.secArray.push(e.target.value);
 
 },
 sub:function(e){
-  if((e.target.value=="sub" || e.target.value=="add" || e.target.value=="devide" || e.target.value=="multi") && this.firstArray.length !=0)
+  if((e.target.value=="-" || e.target.value=="+" || e.target.value=="/" || e.target.value=="*") && this.firstArray.length !=0)
   {
     if(this.total!=0 || this.total!='' )
     {
@@ -156,7 +195,10 @@ this.oper=e.target.value
 
 
 equal:function(){
-
+  if(this.sec==0 || this.sec==''){
+    alert("Please Enter Your Next Value")
+    return false
+  }
   this.flag=0;
   if(this.total!=0 || this.total!='' )
     {
@@ -164,21 +206,23 @@ equal:function(){
         this.flag=1;
     }
 
-  if(this.oper=='sub'){
+  if(this.oper=='-'){
 
     this.total=this.substract(this.first,this.sec);
   }
-   if(this.oper=='add'){
+   if(this.oper=='+'){
     this.total=this.addition(this.first,this.sec);
   }
-    if(this.oper=='devide'){
+    if(this.oper=='/'){
     this.total=this.division(this.first,this.sec);
   }
-   if(this.oper=='multi'){
+   if(this.oper=='*'){
     this.total=this.multiply(this.first,this.sec);
   }
-
-
+this.first='';
+this.sec='';
+this.secArray=[];
+this.oper='';
 
 
 },
@@ -195,7 +239,9 @@ addition:function(first,sec){
 },
 multiply:function(first,sec){
  return first * sec;
-}
+},
+
+
 
 
 }
