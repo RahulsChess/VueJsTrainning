@@ -1,4 +1,19 @@
 <template>
+<<<<<<< HEAD
+=======
+<div>
+  <div class="container row" >
+
+<div class="col-md-4">
+
+
+</div>
+<div class="col-md-4">
+      <div class="row">
+
+                 <textarea disabled style="font-size:30px; color:red" class="bg-light"  name="name" v-model="name" rows="2" cols="20"></textarea>
+      </div>
+>>>>>>> 248fef1a6d427f8c51dc3226c85490de55375e11
   <div class="row">
 <div class="col-md-6">
    <span id="dot"  @mouseover="moveFunction" @click="hitImage" style="color:white"><img src="@/images/scary.jpeg" alt="Dot Click" width="100" height="100" class="img-rounded"></span>
