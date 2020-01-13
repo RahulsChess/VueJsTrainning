@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-<div class="col-md-6">
+<div class="col-sm-6">
    <span id="dot"  @mouseover="moveFunction" @click="hitImage" style="color:white"><img src="@/images/scary.jpeg" alt="Dot Click" width="100" height="100" class="img-rounded"></span>
 
 
@@ -12,11 +12,11 @@
 
 </div>
 
-  <div class="col-md-6 catch">
+  <div class="col-sm-6 catch">
           <h1>Catch me</h1>
            <h1>Score = {{score}}</h1>
            <h1 class="alert-danger"> CountDown:{{ countDown }}</h1>
-           <button @click="countDownTimer">Start</button>
+           <button @click="countDownTimer" :disabled="isActive">Start</button>
 
       </div>
 
@@ -38,8 +38,8 @@ data() {
     showX:'',
     showY:'',
     score:0,
-    countDown : 30
-
+      countDown : 30,
+      isActive:false
   }
 },
 
@@ -86,9 +86,12 @@ this.score++;
      {
        alert("Time Out")
        this.countDown=30;
+       this.isActive=false;
        return false
+
      }
                 if(this.countDown >= 0) {
+                           this.isActive=true;
                     setTimeout(() => {
                         this.countDown -= 1
                         this.countDownTimer()
