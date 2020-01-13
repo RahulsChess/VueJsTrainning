@@ -1,7 +1,7 @@
 <template>
   <div class="row">
 <div class="col-sm-6">
-   <span id="dot"  @mouseover="moveFunction" @click="hitImage" style="color:white"><img src="@/images/scary.jpeg" alt="Dot Click" width="100" height="100" class="img-rounded"></span>
+   <span id="dot" @click="hitImage" style="color:white"><img src="@/images/scary.jpeg" alt="Dot Click" width="100" height="100" class="img-rounded"></span>
 
 
     <div  @mouseover="moveFunction"  class="MouseEvent">
@@ -17,7 +17,10 @@
            <h1>Score = {{score}}</h1>
            <h1 class="alert-danger"> CountDown:{{ countDown }}</h1>
            <button @click="countDownTimer" :disabled="isActive">Start</button>
-
+      <ul v-if="showDiv" class="list-group" >
+        <li class="list-group-item">Your Score Is =<span class="text-danger">{{temp}}</span></li>
+         <li class="list-group-item">Try Again For Better Score</li>
+      </ul>
       </div>
 
 
@@ -37,9 +40,11 @@ data() {
     max:'',
     showX:'',
     showY:'',
+    temp:0,
     score:0,
       countDown : 30,
-      isActive:false
+      isActive:false,
+       showDiv:false
   }
 },
 
@@ -77,28 +82,41 @@ this.max=450;
  },
  hitImage:function(){
 
+ setTimeout(this.setXY(),500);
+
+ setTimeout(this.placeDiv(this.showX,this.showY), 1000);
+
 this.score++;
 
  },
 
    countDownTimer:function(e) {
+
      if(this.countDown==0)
      {
+
        alert("Time Out")
        this.countDown=30;
        this.isActive=false;
+       this.showDiv=true;
+       this.temp=this.score;
+       this.score=0;
        return false
 
      }
                 if(this.countDown >= 0) {
                            this.isActive=true;
+                             this.showDiv=false;
+
                     setTimeout(() => {
                         this.countDown -= 1
                         this.countDownTimer()
                     }, 1000)
+
                 }
                 else
                 {
+
                   return false
                 }
             }
