@@ -133,7 +133,7 @@ this.score++;
 }
 .MouseEvent{
 height: 600px;
-width: 700px;
+width: 550px;
 
  border-radius: 10px;
  background-color: black;
