@@ -21,10 +21,12 @@
             <!-- v-bind:name sets "name" to question index to group answers by question -->
             <!-- v-model creates binding with userResponses -->
             <input type="radio"
+                  :id="'demo'+index"
                    v-bind:value="response.correct"
-                   v-bind:name="index"
+                   name="test"
                    v-model="userResponses[index]"> {{response.text}}
           </label>
+<div style="display:none">  {{ index++ }}</div>
         </li>
       </ol>
       <!-- The two navigation buttons -->
@@ -55,20 +57,20 @@ var quiz = {
   title: 'My quiz',
   questions: [
     {
-      text: "Who Is Manoj Matlane ",
+      text: "Which is Not Cricket Player ",
       responses: [
-        {text: 'The Great Bahubali'},
-        {text: 'Best Vue Js Developer!', correct: true},
-          {text: 'Apple Compony Owner !'},
-            {text: 'Sundar pichai Teacher!'}
+        {text: 'virat kohali'},
+        {text: 'Manoj matlane!', correct: true},
+          {text: 'Hardik Pandya!'},
+            {text: 'MS Dhoni!'}
       ]
     }, {
-      text: "Which  is  Not Manoj Matlane Skills? ",
+      text: "Vue js it is combination of ? ",
       responses: [
-        {text: 'Cricket Playing ' },
-        {text: 'Running Behind Dogs',correct: true},
-          {text: 'Vue js Developing Application'},
-            {text: 'Entertainment'},
+        {text: 'jQuary + Angular' },
+        {text: 'React js + Angular',correct: true},
+          {text: 'Preact + React'},
+            {text: 'Js + Jquery'},
       ]
     }
   ]
@@ -95,6 +97,7 @@ index:0,
    methods: {
     // Go to next question
     next: function() {
+
       this.questionIndex++;
     },
     // Go to previous question
