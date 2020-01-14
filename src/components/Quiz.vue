@@ -24,7 +24,7 @@
                   :id="'demo'+index"
                    v-bind:value="response.correct"
                    name="test"
-                   v-model="userResponses[index]"> {{response.text}}
+                   v-model="userResponses[index]" > {{response.text}}
           </label>
 <div style="display:none">  {{ index++ }}</div>
         </li>
@@ -97,7 +97,8 @@ index:0,
    methods: {
     // Go to next question
     next: function() {
-
+      var test=document.getElementsByName('test');
+      console.log(test);
       this.questionIndex++;
     },
     // Go to previous question

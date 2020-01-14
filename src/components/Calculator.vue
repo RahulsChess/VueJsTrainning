@@ -3,16 +3,11 @@
   <div class="container row" >
 
 <div class="col-md-4">
-First Value={{first}}<br>
-Sec Value={{sec}}<br>
-operator Value={{oper}}<br>
-Total Value={{total}}<br>
-secArray={{secArray}}
 
 </div>
 <div class="col-md-4">
       <div class="row">
-{{display}}
+
                  <textarea disabled style="font-size:30px; color:red" class="bg-light"  name="name" v-model="name" rows="2" cols="20"></textarea>
       </div>
   <div class="row">

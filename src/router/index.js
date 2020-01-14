@@ -6,39 +6,62 @@ import EventHandling from '@/components/EventHandling'
 import TodoList from '@/components/TodoList'
 import Calculator from '@/components/Calculator'
 import Quiz from '@/components/Quiz'
+import Demo from '@/components/Demo'
 Vue.use(Router)
 
-export default new Router({
-    routes: [{
-            path: '/',
-            name: 'Index',
-            component: Index,
-            mode: 'history'
-        },
-        {
-            path: '/data',
-            name: 'data',
-            component: DataBinding,
-            mode: 'history'
-        },
-        {
-            path: '/event',
-            name: 'event',
-            component: EventHandling,
-            mode: 'history'
-        },
-        {
-            path: '/calculator',
-            name: 'calculator',
-            component: Calculator,
-            mode: 'history'
-        },
-        {
-            path: '/quiz',
-            name: 'quiz',
-            component: Quiz,
-            mode: 'history'
-        }
+const routes = [{
+        path: '/index',
+        name: 'Index',
+        component: Index,
 
-    ]
-})
+    },
+    {
+        path: '/',
+        name: 'Welcome',
+        component: Index,
+
+    },
+    {
+        path: '/data',
+        name: 'data',
+        component: DataBinding,
+
+    },
+    {
+        path: '/event',
+        name: 'event',
+        component: EventHandling,
+
+    },
+    {
+        path: '/calculator',
+        name: 'calculator',
+        component: Calculator,
+
+    },
+    {
+        path: '/quiz',
+        name: 'quiz',
+        component: Quiz,
+
+    },
+    {
+        path: '/todo',
+        name: 'todo',
+        component: TodoList,
+
+    },
+    {
+        path: '/demo',
+        name: 'demo',
+        component: Demo,
+
+    }
+
+]
+
+export default new Router({
+    mode: 'history',
+
+    routes
+});

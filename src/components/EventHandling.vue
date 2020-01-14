@@ -93,13 +93,15 @@ this.max=450;
  },
  hitImage:function(){
 
-
+if(this.flag==1){
  setTimeout(this.setXY(),500);
 
  setTimeout(this.placeDiv(this.showX,this.showY), 1000);
 
 
 this.score++;
+}
+
 
  },
 
