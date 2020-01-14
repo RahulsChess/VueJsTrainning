@@ -5,7 +5,8 @@
   <router-link  to="/data"><button type="button" class="btn btn-info"> Data Binding</button></router-link>
     <router-link  to="/calculator"><button type="button" class="btn btn-info"> Calculator</button></router-link>
      <router-link  to="/todo"><button type="button" class="btn btn-info"> TodoList</button></router-link>
-    <router-link  to="/event"><button type="button" class="btn btn-info"> Event Handling</button></router-link>
+    <router-link  to="/event"><button type="button" class="btn btn-info"> Hit Me Game</button></router-link>
+    <router-link  to="/quiz"><button type="button" class="btn btn-info"> Quiz Compitation</button></router-link>
 
   </div>
 

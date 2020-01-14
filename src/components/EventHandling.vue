@@ -7,19 +7,23 @@
     <div  @mouseover="moveFunction"  class="MouseEvent">
 
 
-
       </div>
 
 </div>
 
   <div class="col-sm-6 catch">
+        <h1 v-if="result > score " class="text-success">Highest Score:<span clas="text-info">{{result}}</span></h1>
+ <h1 v-else class="text-success">Highest Score:<span clas="text-info">{{temp}}</span></h1>
+
           <h1>Catch me</h1>
+
            <h1>Score = {{score}}</h1>
            <h1 class="alert-danger"> CountDown:{{ countDown }}</h1>
            <button @click="countDownTimer" :disabled="isActive">Start</button>
       <ul v-if="showDiv" class="list-group" >
-        <li class="list-group-item">Your Score Is =<span class="text-danger">{{temp}}</span></li>
-         <li class="list-group-item">Try Again For Better Score</li>
+        <li class="list-group-item">Your Score Is  =<span class="text-danger">{{temp}}</span></li>
+       <li v-if="result >= temp " class="list-group-item">Try Again  for better Score</li>
+         <li v-if="temp >= result " class="list-group-item text-success">Your Winner </li>
       </ul>
       </div>
 
@@ -42,6 +46,8 @@ data() {
     showY:'',
     temp:0,
     score:0,
+    result:33,
+    flag:0,
       countDown : 30,
       isActive:false,
        showDiv:false
@@ -52,11 +58,16 @@ data() {
 methods: {
 moveFunction:function(e){
 
-
+if(this.flag==1){
 
  setTimeout(this.setXY(),500);
 
  setTimeout(this.placeDiv(this.showX,this.showY), 1000);
+ }
+else{
+  return false;
+}
+
 
 },
 setXY:function()
@@ -66,7 +77,7 @@ setXY:function()
 },
 
 generateDot(){
-this.min=50;
+this.min=100;
 this.max=450;
  this.min = Math.ceil(this.min);
   this.max = Math.floor(this.max);
@@ -82,9 +93,11 @@ this.max=450;
  },
  hitImage:function(){
 
+
  setTimeout(this.setXY(),500);
 
  setTimeout(this.placeDiv(this.showX,this.showY), 1000);
+
 
 this.score++;
 
@@ -94,7 +107,7 @@ this.score++;
 
      if(this.countDown==0)
      {
-
+ this.flag=0;
        alert("Time Out")
        this.countDown=30;
        this.isActive=false;
@@ -105,6 +118,9 @@ this.score++;
 
      }
                 if(this.countDown >= 0) {
+                if(this.result < this.score)
+                  this.result=this.score;
+                  this.flag=1;
                            this.isActive=true;
                              this.showDiv=false;
 

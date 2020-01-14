@@ -5,6 +5,7 @@ import DataBinding from '@/components/DataBinding'
 import EventHandling from '@/components/EventHandling'
 import TodoList from '@/components/TodoList'
 import Calculator from '@/components/Calculator'
+import Quiz from '@/components/Quiz'
 Vue.use(Router)
 
 export default new Router({
@@ -33,9 +34,9 @@ export default new Router({
             mode: 'history'
         },
         {
-            path: '/todo',
-            name: 'todo',
-            component: TodoList,
+            path: '/quiz',
+            name: 'quiz',
+            component: Quiz,
             mode: 'history'
         }
 
