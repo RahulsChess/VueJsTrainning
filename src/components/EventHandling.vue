@@ -12,8 +12,8 @@
 </div>
 
   <div class="col-sm-6 catch">
-        <h1 v-if="result > score " class="text-success">Highest Score:<span clas="text-info">{{result}}</span></h1>
- <h1 v-else class="text-success">Highest Score:<span clas="text-info">{{temp}}</span></h1>
+        <h1 v-if="result > score " class="text-success">Highest Score:<span class="text-danger">{{result+1}}</span></h1>
+
 
           <h1>Catch me</h1>
 
